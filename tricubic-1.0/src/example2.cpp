@@ -53,7 +53,7 @@ double monocubic(double f[8], double dfdx[8], double dfdy[8], double dfdz[8], do
     return ((monocubic(f, dfdx, dfdy, dfdz, d2fdxdy, d2fdxdz, d2fdydz, d3fdxdydz, x, y, z + dq, dx, dy, dz - 1) - monocubic(f, dfdx, dfdy, dfdz, d2fdxdy, d2fdxdz, d2fdydz, d3fdxdydz, x, y, z - dq, dx, dy, dz - 1)) / (2 * dq));
   }
 
-  //first we interpolate 4 values wrt x
+  // first we interpolate 4 values wrt x
   for (i = 0; i < 4; i++) {
     val[0] = f[2 * i];
     val[1] = f[2 * i + 1];
@@ -62,7 +62,7 @@ double monocubic(double f[8], double dfdx[8], double dfdy[8], double dfdz[8], do
     monocubic_mat(coeff, val);
     fx[i] = monocubic_run(coeff, x);
   }
-  //next we interpolate 4 values dfdy wrt x
+  // next we interpolate 4 values dfdy wrt x
   for (i = 0; i < 4; i++) {
     val[0] = dfdy[2 * i];
     val[1] = dfdy[2 * i + 1];
@@ -71,7 +71,7 @@ double monocubic(double f[8], double dfdx[8], double dfdy[8], double dfdz[8], do
     monocubic_mat(coeff, val);
     dfdyx[i] = monocubic_run(coeff, x);
   }
-  //next we interpolate 4 values dfdz wrt x
+  // next we interpolate 4 values dfdz wrt x
   for (i = 0; i < 4; i++) {
     val[0] = dfdz[2 * i];
     val[1] = dfdz[2 * i + 1];
@@ -80,7 +80,7 @@ double monocubic(double f[8], double dfdx[8], double dfdy[8], double dfdz[8], do
     monocubic_mat(coeff, val);
     dfdzx[i] = monocubic_run(coeff, x);
   }
-  //next we interpolate 4 values d2fdydz wrt x
+  // next we interpolate 4 values d2fdydz wrt x
   for (i = 0; i < 4; i++) {
     val[0] = d2fdydz[2 * i];
     val[1] = d2fdydz[2 * i + 1];
@@ -89,7 +89,7 @@ double monocubic(double f[8], double dfdx[8], double dfdy[8], double dfdz[8], do
     monocubic_mat(coeff, val);
     d2fdydzx[i] = monocubic_run(coeff, x);
   }
-  //next we interpolate 2 values of f wrt y
+  // next we interpolate 2 values of f wrt y
   for (i = 0; i < 2; i++) {
     val[0] = fx[2 * i];
     val[1] = fx[2 * i + 1];
@@ -98,7 +98,7 @@ double monocubic(double f[8], double dfdx[8], double dfdy[8], double dfdz[8], do
     monocubic_mat(coeff, val);
     fy[i] = monocubic_run(coeff, y);
   }
-  //next we interpolate 2 values of dfdz wrt y
+  // next we interpolate 2 values of dfdz wrt y
   for (i = 0; i < 2; i++) {
     val[0] = dfdzx[2 * i];
     val[1] = dfdzx[2 * i + 1];
@@ -107,7 +107,7 @@ double monocubic(double f[8], double dfdx[8], double dfdy[8], double dfdz[8], do
     monocubic_mat(coeff, val);
     dfdzy[i] = monocubic_run(coeff, y);
   }
-  //finally interpolation of f wrt z
+  // finally interpolation of f wrt z
   val[0] = fy[0];
   val[1] = fy[1];
   val[2] = dfdzy[0];
